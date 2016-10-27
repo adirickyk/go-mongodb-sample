@@ -77,20 +77,20 @@ func Startup(sessionID string) error {
 	}
 
 	// Log the mongodb connection straps.
-	log.Trace(sessionID, "Startup", "MongoDB : Hosts[%s]", config.Hosts)
-	log.Trace(sessionID, "Startup", "MongoDB : Database[%s]", config.Database)
-	log.Trace(sessionID, "Startup", "MongoDB : Username[%s]", config.UserName)
+	log.Trace(sessionID, "Startup", "MongoDB : Hosts[%s]", "localhost")
+	log.Trace(sessionID, "Startup", "MongoDB : Database[%s]", "goinggo")
+	// log.Trace(sessionID, "Startup", "MongoDB : Username[%s]", config.UserName)
 
-	hosts := strings.Split(config.Hosts, ",")
+	hosts := strings.Split("localhost", ",")
 
 	// Create the strong session.
-	if err := CreateSession(sessionID, "strong", MasterSession, hosts, config.Database, config.UserName, config.Password); err != nil {
+	if err := CreateSession(sessionID, "strong", MasterSession, hosts, "goinggo", config.UserName, config.Password); err != nil {
 		log.CompletedError(err, sessionID, "Startup")
 		return err
 	}
 
 	// Create the monotonic session.
-	if err := CreateSession(sessionID, "monotonic", MonotonicSession, hosts, config.Database, config.UserName, config.Password); err != nil {
+	if err := CreateSession(sessionID, "monotonic", MonotonicSession, hosts, "goinggo", config.UserName, config.Password); err != nil {
 		log.CompletedError(err, sessionID, "Startup")
 		return err
 	}

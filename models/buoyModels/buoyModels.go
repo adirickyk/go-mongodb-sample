@@ -16,9 +16,9 @@ import (
 type (
 	// BuoyCondition contains information for an individual station.
 	BuoyCondition struct {
-		WindSpeed     float64 `bson:"wind_speed_milehour" json:"wind_speed_milehour"`
-		WindDirection int     `bson:"wind_direction_degnorth" json:"wind_direction_degnorth"`
-		WindGust      float64 `bson:"gust_wind_speed_milehour" json:"gust_wind_speed_milehour"`
+		WindSpeed     float64 `bson:"wind_speed_milehour" json:"wind_speed_milehour" form:"windSpeed"`
+		WindDirection string     `bson:"wind_direction_degnorth" json:"wind_direction_degnorth" form:"windDirection"`
+		WindGust      float64 `bson:"gust_wind_speed_milehour" json:"gust_wind_speed_milehour" form:"windGust"`
 	}
 
 	// BuoyLocation contains the buoys location.
@@ -30,11 +30,11 @@ type (
 	// BuoyStation contains information for an individual station.
 	BuoyStation struct {
 		ID        bson.ObjectId `bson:"_id,omitempty"`
-		StationID string        `bson:"station_id" json:"station_id"`
-		Name      string        `bson:"name" json:"name"`
-		LocDesc   string        `bson:"location_desc" json:"location_desc"`
-		Condition BuoyCondition `bson:"condition" json:"condition"`
-		Location  BuoyLocation  `bson:"location" json:"location"`
+		StationID string        `bson:"station_id" json:"station_id" form:"stationID"`
+		Name      string        `bson:"name" json:"name" form:"name"`
+		LocDesc   string        `bson:"location_desc" json:"location_desc" form:"locDesc"`
+		Condition BuoyCondition `bson:"condition" json:"condition" form:"condition"`
+		Location  BuoyLocation  `bson:"location" json:"location" form:"location"`
 	}
 )
 

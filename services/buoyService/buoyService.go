@@ -48,12 +48,12 @@ func FindStation(service *services.Service, stationID string) (*buoyModels.BuoyS
 	var buoyStation buoyModels.BuoyStation
 	f := func(collection *mgo.Collection) error {
 		queryMap := bson.M{"station_id": stationID}
-
 		log.Trace(service.UserID, "FindStation", "MGO : db.buoy_stations.find(%s).limit(1)", mongo.ToString(queryMap))
 		return collection.Find(queryMap).One(&buoyStation)
 	}
 
 	if err := service.DBAction(Config.Database, "buoy_stations", f); err != nil {
+
 		if err != mgo.ErrNotFound {
 			log.CompletedError(err, service.UserID, "FindStation")
 			return nil, err
@@ -61,6 +61,22 @@ func FindStation(service *services.Service, stationID string) (*buoyModels.BuoyS
 	}
 
 	log.Completedf(service.UserID, "FindStation", "buoyStation%+v", &buoyStation)
+	return &buoyStation, nil
+}
+
+func AllStation(service *services.Service) (*[]buoyModels.BuoyStation, error) {
+	var buoyStation []buoyModels.BuoyStation
+	f := func(collection *mgo.Collection) error {
+		return collection.Find(nil).All(&buoyStation)
+	}
+
+	if err := service.DBAction(Config.Database, "buoy_stations", f); err != nil {
+		if err != mgo.ErrNotFound {
+			return nil, err
+		}
+	}
+
+	log.Completedf(service.UserID, "AllStation", "buoyStation%+v", &buoyStation)
 	return &buoyStation, nil
 }
 
@@ -83,4 +99,17 @@ func FindRegion(service *services.Service, region string) ([]buoyModels.BuoyStat
 
 	log.Completedf(service.UserID, "FindRegion", "buoyStations%+v", buoyStations)
 	return buoyStations, nil
+}
+
+func CreateStation(service *services.Service, station buoyModels.BuoyStation) (buoyModels.BuoyStation, error) {
+	var buoyStation buoyModels.BuoyStation
+	f := func(collection *mgo.Collection) error {
+		return collection.Insert(&station)
+	}
+
+	if err := service.DBAction(Config.Database, "buoy_stations", f); err != nil {
+		return buoyStation, err
+	}
+
+	return buoyStation, nil
 }

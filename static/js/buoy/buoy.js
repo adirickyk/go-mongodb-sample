@@ -17,39 +17,46 @@ $(document).ready(function() {
 
 function Standard_Callback() {
     try {
+        console.log('standar callback');
         alert(this.ResultString);
     }
 
-    catch (e) {   
+    catch (e) {
+        console.log('catch standar callback');
         alert(e);
     }
 }
 
 function Standard_ValidationCallback() {
     try {
+        console.log('standar validation callback');
         alert(this.ResultString);
     }
 
     catch (e) {   
+        console.log('catch standar validation callback');
         alert(e);
     }
 }
 
 function Standard_ErrorCallback() {
     try {
+        console.log('standar error callback');
         alert(this.ResultString);
     }
 
-    catch (e) {   
+    catch (e) {
+
+        console.log('catch standar error callback');
         alert(e);
     }
 }
 
 function ShowDetail(result) {
-	try {
-		var postData = {};
-		postData["stationId"] = $(result).attr('data');
-		
+    try {
+        var postData = {};
+        postData["stationId"] = $(result).attr('data');
+
         var service = new ServiceResult();
         service.getJSONData("/buoy/retrievestation",
                             postData,
@@ -72,6 +79,7 @@ function ShowDetail_Callback() {
 	}
 	
 	catch (e) {
+        console.log("catch ShowDetail_Callback")
         alert(e);
     }
 }
@@ -92,6 +100,7 @@ function LoadStationJson() {
     }
 
     catch (e) {
+        console.log("catch LoadStationJson")
         alert(e);
     }
 }
@@ -102,6 +111,7 @@ function LoadStationJson_Callback() {
 	}
 	
 	catch (e) {
+        console.log("catch LoadStationJson_Callback")
         alert(e);
     }
 }

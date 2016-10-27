@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="wrapper">
+    <form action="/buoy/station" class="form" id="buoyStation" method="POST">
+      <div class="row form-group">
+        <label class="control-label" for="station-id">Station ID</label>
+        <input type="text" name="stationID" id="station-id" class="form-control" />
+      </div>
+      <div class="row form-group">
+        <label class="control-label" for="station-id">Name</label>
+        <input type="text" name="name" id="name" class="form-control"/>
+      </div>
+      <div class="row form-group">
+        <label class="control-label" for="loc-desc">Location</label>
+        <input type="text" name="locDesc" id="loc-desc" class="form-control" />    
+      </div>
+      <div class="row form-group">
+        <label class="control-label" for="wind-speed">Wind Speed</label>
+        <input type="text" name="condition[windSpeed]" id="wind-speed" class="form-control" />    
+      </div>
+      <div class="row form-group">
+        <label class="control-label" for="wind-direction">Wind Direction</label>
+        <input type="text" name="condition[windDirection]" id="wind-direction" class="form-control" />
+      </div>
+      <div class="row form-group">
+        <label class="control-label" for="wind-gust">Wind Gust</label>
+        <input type="text" name="condition[windGust]" id="wind-gust" class="form-control" />    
+      </div>
+      <input type="submit" class="btn btn-success pull-right" />
+    </form>
+  </div>
+</div>
+

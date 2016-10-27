@@ -61,6 +61,7 @@ function ServiceResult() {
     // Handles Ajax Error
     var processError = function (objXHR, textStatus, error) {
         try {
+            console.log("process error", objXHR, textStatus, error)
             alert('Error: ' + textStatus);
             this.ErrorCallback.call(this);
         }
@@ -91,6 +92,7 @@ function ServiceResult() {
             this.ValidationCallback = validationCallBack;
             this.ErrorCallback = errorCallBack;
             this.Baggage = baggage;
+            console.log(data);
 
             $.ajax({
                 url: url,

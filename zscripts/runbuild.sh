@@ -8,4 +8,4 @@ cd $GOPATH/src/github.com/goinggo/beego-mgo
 go clean -i
 go build
 
-./beego-mgo
+# ./beego-mgo
